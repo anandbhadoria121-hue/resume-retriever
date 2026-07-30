@@ -1,0 +1,21 @@
+# --- PyTorch (CPU-only wheel: HF free tier has no GPU, and this builds far
+# --- faster and smaller than the default CUDA build) ---
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+
+# Embeddings
+sentence-transformers
+langchain-huggingface
+
+# Vector DB
+pinecone
+
+# LLM clients
+google-genai          # Gemini  (from google import genai)
+openai                # OpenRouter / Llama path (uses OpenAI client)
+
+# UI
+gradio
+
+# Utilities
+python-dotenv
