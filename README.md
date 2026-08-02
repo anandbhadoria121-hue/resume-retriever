@@ -128,7 +128,7 @@ Rather than report an unexamined accuracy number, I ran a focused manual evaluat
 
 ### Method
 
-I used real job descriptions as queries, retrieved the top 10 resumes for each, and judged each
+I used real job descriptions as queries, retrieved the top 1 to 15 resumes (Users choice) for each, and judged each
 result **relevant / not relevant by reading it** — using a strict bar ("does this resume genuinely
 look like this role?"). Precision@10 is the fraction of the 10 retrieved that were relevant.
 
@@ -145,6 +145,8 @@ I deliberately did **not** use the dataset's category labels as ground truth (se
 | Software / coding role         | 0.60         |
 | Ultrasound clinical sales      | 0.40         |
 | **Mean**                       | **≈ 0.73**   |
+
+Since these evaluation were currently very limited, I do plan to work on this part and make a python file that can much better evaluate the score. By using Gemini, I plan to make the script so that it can verify if top 10 - 15 chunks are even relevant. For now I would propose to use this program on resumes that were directly submitted on a particular job listing rather than across so many different labels. 
 
 ### Findings
 
@@ -170,13 +172,6 @@ I deliberately did **not** use the dataset's category labels as ground truth (se
      answered because chunking separates the skills section from the dated work history. Better
      handled by extracting `total_years_experience` into metadata at index time than by leaving
      it to semantic search.
-
-### Limitations of this evaluation
-
-Single annotator, n = 6 queries, strict-bar judgments. This is a focused manual evaluation that
-surfaces clear behavioral patterns — not a validated benchmark. A fuller evaluation would use
-multiple annotators, more queries, and an LLM-as-judge pass validated against human labels.
-
 ---
 
 ## Possible improvements
@@ -187,6 +182,8 @@ multiple annotators, more queries, and an LLM-as-judge pass validated against hu
   time, enabling filters that semantic search handles poorly.
 - **Deduplication** on filename in the retrieval step.
 - **Reranking** the top-k with a cross-encoder for sharper ordering.
+- **Automating evaluation task**
+- **Ways to add data with some fail safe from the user end**
 
 ---
 
